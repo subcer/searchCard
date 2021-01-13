@@ -1,0 +1,10 @@
+#app
+  .control
+    input(type="checkbox",v-model="gather")
+    input(type="checkbox",v-for="card in cards",v-model="card.open")
+    button(@click="shuffle") 隨機洗牌
+  h2 {{state}}
+  .cards(:class="{gather: gather}")
+    .card(v-for="card in cards",:class="{open: card.open}",:data-order="card.id",@click="openCard(card)") 
+      .face.back 
+      .face.front {{ getSymbol(card.label) }}
